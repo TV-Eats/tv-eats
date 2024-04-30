@@ -1,4 +1,23 @@
-# Frontend
+# TV-Eats
+
+The best place to find restaurants as-seen-on-TV
+
+## Prerequisites
+
+- Windows Users: Configure Unix-style line endings in Git
+  - `git config core.autocrlf false`
+  - If you are using VSCode, the `.vscode` folder setting `"files.eol": "\n"` should take care of this. If you are using another editor make sure it is set to use LF endings (\n) and not CRLF (\r\n)
+
+## Repo Folder Structure
+
+- `data` Restarant data retrieval scripts
+- `public` Assets served by the Frontend
+- `src` Source for the Frontend
+- `supabase` Database migrations and backend.
+
+## Frontend
+
+- Install [Node.js v20](https://nodejs.org/en/download). Windows Users: make sure you check "Install Dependencies".
 
 ## Available Scripts
 
@@ -27,24 +46,32 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-# Database & Backend
+## Database & Backend
 
-This project uses [Supabase](https://supabase.com/) as it's database. It is also used as the backend and authentication platform. I recommend you create an account linked to GitHub.
+This project uses [Supabase](https://supabase.com/) as it's database. It is also used as the backend and authentication platform. I recommend you create an account linked to your GitHub account.
 
-### 1. Install Docker Desktop
+### Setup
+
+#### 1. Install Docker Desktop
+
 [Download & install from here.](https://www.docker.com/products/docker-desktop/)
 You can skip signing in.
 
-### 2. Be invited to the TV-Eats Supabase org
+#### 2. Be invited to the TV-Eats Supabase org
+
 Ask to be invited to the org to get access to the project
 
-### 3. Install the Supabase CLI tool
+#### 3. Install the Supabase CLI tool
+
 Follow the getting [started guide](https://supabase.com/docs/guides/cli/getting-started)
 
-### 4. Login to Supabase and Link the TV-Eats project
+#### 4. Login to Supabase and Link the TV-Eats project
+
 `supabase login`
 `supabase link`
 
-### 5. Start the local database
+#### 5. Start the local database
+
 `supabase start`
-a
+
+You should now be able to see the database locally at [http://127.0.0.1:54323/project/default/database/tables](http://127.0.0.1:54323/project/default/database/tables)
