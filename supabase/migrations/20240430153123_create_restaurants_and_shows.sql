@@ -1,7 +1,8 @@
 CREATE TABLE shows (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
-  publisher TEXT NULL
+  publisher TEXT NULL,
+  platform TEXT NULL
 );
 
 CREATE TABLE restaurants (
@@ -10,7 +11,7 @@ CREATE TABLE restaurants (
   address TEXT NOT NULL,
   city TEXT NOT NULL,
   state TEXT NOT NULL,
-  zip TEXT NOT NULL,
+  zip TEXT NULL,
   website TEXT NULL,
   website_status TEXT NULL,
   phone TEXT NULL,
@@ -19,14 +20,14 @@ CREATE TABLE restaurants (
   UNIQUE(name, address)
 );
 
-CREATE TABLE restaurant_shows (
+CREATE TABLE shows_restaurants (
   id SERIAL PRIMARY KEY,
-  restaurant_id INT NOT NULL REFERENCES restaurants(id),
   show_id INT NOT NULL REFERENCES shows(id),
+  restaurant_id INT NOT NULL REFERENCES restaurants(id),
   UNIQUE(restaurant_id, show_id)
 );
 
 ALTER TABLE shows ENABLE ROW LEVEL SECURITY;
 ALTER TABLE restaurants ENABLE ROW LEVEL SECURITY;
-ALTER TABLE restaurant_shows ENABLE ROW LEVEL SECURITY;
+ALTER TABLE shows_restaurants ENABLE ROW LEVEL SECURITY;
 
