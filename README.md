@@ -1,6 +1,23 @@
-# Getting Started with Create React App
+# TV-Eats
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The best place to find restaurants as-seen-on-TV
+
+## Prerequisites
+
+- Windows Users: Configure Unix-style line endings in Git
+  - `git config core.autocrlf false`
+  - If you are using VSCode, the `.vscode` folder setting `"files.eol": "\n"` should take care of this. If you are using another editor make sure it is set to use LF endings (\n) and not CRLF (\r\n)
+
+## Repo Folder Structure
+
+- `data` Restarant data retrieval scripts
+- `public` Assets served by the Frontend
+- `src` Source for the Frontend
+- `supabase` Database migrations and backend.
+
+## Frontend
+
+- Install [Node.js v20](https://nodejs.org/en/download). Windows Users: make sure you check "Install Dependencies".
 
 ## Available Scripts
 
@@ -29,18 +46,32 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Database & Backend
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This project uses [Supabase](https://supabase.com/) as it's database. It is also used as the backend and authentication platform. I recommend you create an account linked to your GitHub account.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### 1. Install Docker Desktop
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[Download & install from here.](https://www.docker.com/products/docker-desktop/)
+You can skip signing in.
 
-## Learn More
+#### 2. Be invited to the TV-Eats Supabase org
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Ask to be invited to the org to get access to the project
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 3. Install the Supabase CLI tool
+
+Follow the getting [started guide](https://supabase.com/docs/guides/cli/getting-started)
+
+#### 4. Login to Supabase and Link the TV-Eats project
+
+`supabase login`
+`supabase link`
+
+#### 5. Start the local database
+
+`supabase start`
+
+You should now be able to see the database locally at [http://127.0.0.1:54323/project/default/database/tables](http://127.0.0.1:54323/project/default/database/tables)
