@@ -4,7 +4,7 @@ function Navbar() {
 
   return (
     <div className="Navbar">
-        <nav className="z-20 bg-blue border-gray-200 relative">
+        <nav className="bg-blue border-gray-200 relative">
             <div className="max-w-screen-xl h-1/6 flex grid-rows-1 flex-wrap items-center justify-between mx-auto p-4 overflow-x-hidden">
                 <div>
                     <a href="#" className="flex items-center space-x-0 rtl:space-x-reverse">
