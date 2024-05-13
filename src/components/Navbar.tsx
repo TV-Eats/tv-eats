@@ -1,7 +1,4 @@
 import Logo from './svgs/Logo';
-import Contact from '../pages/Contact';
-import Restaurants from '../pages/Restaurants';
-import Shows from '../pages/Shows';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
