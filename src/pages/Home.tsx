@@ -1,6 +1,32 @@
+import { useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
 import LogoBig from '../components/svgs/LogoBig';
+import { useEffect } from 'react';
+import { Database } from '../types/supabase';
+
+// TODO: Replace these with injected values
+const supabase = createClient<Database>("https://lbcmncanrrxxpnxgqjuy.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxiY21uY2FucnJ4eHBueGdxanV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTE3MjEsImV4cCI6MjAzMDc2NzcyMX0.ixqd5dq2vKgF_JNWQe-iLbwYoNd9rzvK7C2-fAd_b78")
 
 function Home() {
+
+  const [shows, setShows] = useState([] as any[])
+
+  // Leaving this example here for future reference
+  async function getShows() {
+    let { data: shows, error } = await supabase
+      .from('shows')
+      .select('name')
+    if (error) {
+      console.log('error', error)
+    } else if (shows) {
+      setShows(shows)
+    }
+  }
+
+  useEffect(() => {
+    getShows()
+  }, [])
+
   return (
     <div>
       <center>
