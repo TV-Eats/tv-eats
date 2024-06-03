@@ -3120,7 +3120,7 @@ INSERT INTO public.shows VALUES (57, 'Top 5', 'Food Network', 'Television');
 INSERT INTO public.shows VALUES (58, 'Top 5 Restaurants', 'Food Network', 'Television');
 INSERT INTO public.shows VALUES (59, 'Unwrapped', 'Food Network', 'Television');
 INSERT INTO public.shows VALUES (60, 'The Best Thing I Ever Ate', 'Food Network', 'Television');
-INSERT INTO public.shows VALUES (61, 'Diners, Dive-Ins, and Dives', 'Food Network', 'Television');
+INSERT INTO public.shows VALUES (61, 'Diners, Drive-Ins, and Dives', 'Food Network', 'Television');
 
 
 --
