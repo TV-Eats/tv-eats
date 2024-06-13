@@ -9,7 +9,7 @@ const supabase = createClient<Database>("https://lbcmncanrrxxpnxgqjuy.supabase.c
 
 function Home() {
 
-  const [_, setShows] = useState([] as any[])
+  const [, setShows] = useState([] as any[])
 
   // Leaving this example here for future reference
   async function getShows() {
