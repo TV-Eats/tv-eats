@@ -13,11 +13,16 @@ module.exports = {
       },
       fontFamily: {
         'jomhuria': 'Jomhuria'
+      },
+      daisyui: {
+        themes: false,
+        base: false
       }
     },
   },
   plugins: [
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require('daisyui')
   ],
 }
 
