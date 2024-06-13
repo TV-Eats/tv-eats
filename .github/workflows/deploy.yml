@@ -1,0 +1,49 @@
+name: Deploy Dev
+
+# on:
+#  push:
+#    branches:
+#      - dev
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::09835529010:role/github-actions-role
+          role-session-name: GitHubActionsSession
+          aws-region: us-east-1
+
+      - name: Delete existing build objects
+        run: aws s3 rm s3://tv-eats-app --recursive
+
+      - name: Upload build artifacts
+        run: aws s3 cp build s3://tv-eats-app --recursive
+
+      - name: Invalidate CloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id E4559WPC9BXSB --paths "/*"
