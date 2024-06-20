@@ -10,6 +10,9 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout code
@@ -33,7 +36,7 @@ jobs:
           path: build
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::098355290109:role/tv-eats-github-actions-role
           role-session-name: GitHubActionsSession
