@@ -3,6 +3,20 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function Home() {
+  const [filter, setFilter] = useState("Restaurants");
+  const [searchBarText, setSearchBarText] = useState("");
+
+
+
+  const handleSearchBarChange = (e: any) => {
+    setSearchBarText(e.target.value);
+  }
+
+  const handleSelectChange = (e:any) => {
+    setFilter(e.target.value);
+  }
+
+  
 
   return (
     <div>
@@ -14,18 +28,28 @@ function Home() {
           </div>
 
           <div className='mt-6 sm:-mt-6 relative w-5/6 sm:w-1/3 pb-12'>
-            <form>
-              <label htmlFor="default-search" className="mb-2 text-sm font-medium text-white sr-only">Search</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                  </svg>
-                </div>
-                <input id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search Cities" required />
-                <button type="button" id="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue font-medium rounded-lg text-sm px-4 py-2">Search</button>
-              </div>
-            </form>
+            <span className='inline-flex space-x-2'>
+              <span>
+              <select id="select" onChange={handleSelectChange} className="select w-full max-w-xs">
+                <option>Restaurants</option>
+                <option>Cities</option>
+              </select>
+              </span>
+              <span>
+                <form>
+                  <label htmlFor="default-search" className="mb-2 text-sm font-medium text-white sr-only">Search</label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                      <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                      </svg>
+                    </div>
+                    <input id="default-search" onChange={handleSearchBarChange} className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search Cities" required />
+                    <Link to={`/restaurants?query=${searchBarText}&filter=${filter}`}><button type="button" id="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue font-medium rounded-lg text-sm px-4 py-2">Search</button></Link>
+                  </div>
+                </form>
+              </span>
+            </span>
           </div>
         </div>
       </center>

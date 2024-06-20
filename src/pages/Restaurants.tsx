@@ -18,6 +18,9 @@ function Restaurants() {
     const [searchParams] = useSearchParams();
     const [searchBarText, setSearchBarText] = useState('' as string);
     const [searchBarQuery, setSearchBarQuery] = useState('' as string);
+    let val = searchParams.get('show_id') as unknown as number;
+    let homeSearch = searchParams.get("filter") as unknown as string;
+    let query = searchParams.get("query") as unknown as string; 
 
 
     async function getRestaurants() {
@@ -46,7 +49,15 @@ function Restaurants() {
         }
     }
 
-    let val = searchParams.get('show_id') as unknown as number;
+    async function searchRestaurantsByCity(query: string) {
+      console.log('Searching!')
+      let { data: restaurants, error } = await supabase.from('restaurants').select().textSearch('city', query)
+      if (error) {
+          console.log('error', error)
+      } else if (restaurants) {
+          setRestaurants(restaurants)
+      }  }
+
 
     const handleSearchBarChange = (e: any) => {
         setSearchBarText(e.target.value);
@@ -57,6 +68,12 @@ function Restaurants() {
     useEffect(() => {
         if (searchBarQuery) {
             searchRestaurantsByName(searchBarQuery)
+        } else if (homeSearch == "Restaurants") {
+            setSearchBarText(query) ;
+            searchRestaurantsByName(query);
+        } else if (homeSearch == "Cities") {
+          searchRestaurantsByCity(query);  
+          setSearchBarText(query);
         }
         
     }, [searchBarQuery])
@@ -85,8 +102,9 @@ function Restaurants() {
     }
 
     useEffect(() => {
-        getRestaurants()
-        getIds()
+        setSearchBarQuery(query);
+        getRestaurants();
+        getIds();
         getShows();
     }, [])
 
@@ -101,40 +119,12 @@ function Restaurants() {
     let filteredRestaurants = restaurants.filter((restaurant) => isMatch(restaurant.id));
     console.log(filteredRestaurants);
 
-    function getRestaurantCities() {
-        var restaurantCities = [] as any;
-        restaurants.forEach((element: any) => {
-            if (!restaurants.includes(element.city)) {
-                restaurantCities.push(element.city)
-            }
-        });
-
-        return restaurantCities;
-    }
-
-    function getFilteredCities() {
-        var filteredCities = [] as any;
-        filteredRestaurants.forEach((element: any) => {
-            if (!filteredRestaurants.includes(element.city)) {
-                filteredCities.push(element.city)
-            }
-        });
-
-        return filteredCities;
-    }
-
     return (
         <div>
             <center>
-                <h1 className="text-2xl pt-2.5">{val ? filteredRestaurants.length : restaurants.length} restaurants found</h1>
+                <span className="text-2xl pt-2.5 inline-flex space-x-2">{val ? filteredRestaurants.length : restaurants.length} restaurants found {query ? <h1> matching "{query}"</h1> : null}</span>
             </center>
             <div className="grid grid-cols-1 lg:grid-cols-10 md:grids-cols-2">
-                <div>
-                    <select className="select select-bordered w-full max-w-xs text-black">
-                        <option disabled selected>Filter by City</option>
-                        {val ? (getFilteredCities().map((restaurant: any) => <option>{restaurant.city}</option>)) : (getRestaurantCities().map((restaurant: any) => <option>{restaurant.city}</option>))}
-                    </select>
-                </div>
                 <div className="lg:col-start-3 lg:col-span-8 md:col-span-1">
                     <label className="input input-bordered flex items-center gap-2">
                         <input 
