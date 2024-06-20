@@ -35,7 +35,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::09835529010:role/github-actions-role
+          role-to-assume: arn:aws:iam::098355290109:role/tv-eats-github-actions-role
           role-session-name: GitHubActionsSession
           aws-region: us-east-1
 
