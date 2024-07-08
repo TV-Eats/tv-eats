@@ -11,7 +11,7 @@ function ShowTile({showName, id}: Params) {
     return (
         <div>
             <center>
-                <Link to={`/restaurants?show_id=${id}`}>
+                <Link to={`/restaurants?show_id=${id}&res_name=${showName}`}>
                     <div className="max-w-sm mt-4 mx-2 bg-white border border-gray-200 rounded-lg shadow-md">
                         <img className="hidden md:block show border rounded-t-lg" src="https://media.gq.com/photos/59dfc6d9d61cb80476584e18/master/pass/guy-fieiri-flame.jpg" alt="guy fieri placeholder" />
                         <h1 className="py-6">

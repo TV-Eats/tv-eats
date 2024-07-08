@@ -17,7 +17,7 @@ function TileLayout({tileList, arrayType}: Params) {
     } else {
         return (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-8 pb-8">
-                {tileList.map((restaurant) => (<RestaurantTile name={restaurant.name} city={restaurant.city} state={restaurant.state} website={restaurant.website} id={restaurant.id} description={restaurant.description} />))} 
+                {tileList.map((restaurant) => (<RestaurantTile name={restaurant.name} address={restaurant.address} city={restaurant.city} state={restaurant.state} website={restaurant.website} id={restaurant.id} description={restaurant.description} />))} 
             </div>
         )
     }

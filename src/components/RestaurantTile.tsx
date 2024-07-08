@@ -10,9 +10,17 @@ type Params = {
     website: string;
     id: string;
     description: string;
+    address: string;
 }
 
-function RestaurantTile({name, city, state, website, id, description}: Params) {
+const escape = (address: any) => {
+    return encodeURIComponent(address);
+}
+
+
+
+function RestaurantTile({name, city, state, website, id, description, address}: Params) {
+    console.log(escape(address));
     return (
         <div>
             <button onClick={()=>(document.getElementById(id) as HTMLFormElement).showModal()}>
@@ -39,6 +47,14 @@ function RestaurantTile({name, city, state, website, id, description}: Params) {
                                                         <span>{name}'s website</span>
                                                     </span></a> : null}
                         <p className="pt-2">{description}</p>
+
+                        <iframe
+                            width="400"
+                            height="300"
+                            loading="lazy"
+                            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDHRL7If953RLfKsfBOZ64Ws7RgU07-Jgc&q=${escape(address)}`}
+                            className="pt-4">
+                        </iframe>
                     </div>
 
                     <div className="modal-action">
