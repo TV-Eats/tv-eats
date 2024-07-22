@@ -13,7 +13,6 @@ const supabase = createClient<Database>("https://lbcmncanrrxxpnxgqjuy.supabase.c
 
 function Restaurants() {
   const [restaurants, setRestaurants] = useState([] as any[]);
-  const [shows_restaurants, setShows_restaurants] = useState([] as any[]);
   const [searchParams] = useSearchParams();
   const [searchBarText, setSearchBarText] = useState('' as string);
   const [searchBarQuery, setSearchBarQuery] = useState('' as string);

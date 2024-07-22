@@ -16,8 +16,8 @@ export default function Contact() {
       <form action="#" method="POST" className="mx-auto max-w-xl sm:mt-6">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
-            <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
-              First name
+            <label htmlFor="first-name" className="block text-sm font-semibold leading-6 underline underline-offset-2 decoration-orange decoration-2 text-gray-900">
+              First name 
             </label>
             <div className="mt-2.5">
               <input
@@ -30,7 +30,7 @@ export default function Contact() {
             </div>
           </div>
           <div>
-            <label htmlFor="last-name" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="last-name" className="block text-sm underline underline-offset-2 decoration-orange decoration-2 font-semibold leading-6 text-gray-900">
               Last name
             </label>
             <div className="mt-2.5">
@@ -45,7 +45,7 @@ export default function Contact() {
           </div>
           
           <div className="sm:col-span-2">
-            <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="email" className="block text-sm underline underline-offset-2 decoration-orange decoration-2 font-semibold leading-6 text-gray-900">
               Email
             </label>
             <div className="mt-2.5">
@@ -59,7 +59,7 @@ export default function Contact() {
             </div>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="phone-number" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="phone-number" className="block text-sm underline underline-offset-2 decoration-orange decoration-2 font-semibold leading-6 text-gray-900">
               Phone number
             </label>
             <div className="relative mt-2.5">
@@ -91,7 +91,7 @@ export default function Contact() {
             </div>
           </div>
           <div className="sm:col-span-2">
-            <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
+            <label htmlFor="message" className="block text-sm font-semibold underline underline-offset-4 decoration-orange decoration-2 leading-6 text-gray-900">
               Message
             </label>
             <div className="mt-2.5">
