@@ -1,31 +1,22 @@
-import { useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import LogoBig from '../components/svgs/LogoBig';
-import { useEffect } from 'react';
-import { Database } from '../types/supabase';
-
-// TODO: Replace these with injected values
-const supabase = createClient<Database>("https://lbcmncanrrxxpnxgqjuy.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxiY21uY2FucnJ4eHBueGdxanV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTE3MjEsImV4cCI6MjAzMDc2NzcyMX0.ixqd5dq2vKgF_JNWQe-iLbwYoNd9rzvK7C2-fAd_b78")
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function Home() {
+  const [filter, setFilter] = useState("Restaurants");
+  const [searchBarText, setSearchBarText] = useState("");
 
-  const [shows, setShows] = useState([] as any[])
 
-  // Leaving this example here for future reference
-  async function getShows() {
-    let { data: shows, error } = await supabase
-      .from('shows')
-      .select('name')
-    if (error) {
-      console.log('error', error)
-    } else if (shows) {
-      setShows(shows)
-    }
+
+  const handleSearchBarChange = (e: any) => {
+    setSearchBarText(e.target.value);
   }
 
-  useEffect(() => {
-    getShows()
-  }, [])
+  const handleSelectChange = (e:any) => {
+    setFilter(e.target.value);
+  }
+
+  
 
   return (
     <div>
@@ -37,18 +28,28 @@ function Home() {
           </div>
 
           <div className='mt-6 sm:-mt-6 relative w-5/6 sm:w-1/3 pb-12'>
-            <form>
-              <label htmlFor="default-search" className="mb-2 text-sm font-medium text-white sr-only">Search</label>
-              <div className="relative">
-                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                  </svg>
-                </div>
-                <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search Restaurants & Shows" required />
-                <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue font-medium rounded-lg text-sm px-4 py-2">Search</button>
-              </div>
-            </form>
+            <span className='inline-flex space-x-2'>
+              <span>
+              <select id="select" onChange={handleSelectChange} className="select w-full max-w-xs">
+                <option>Restaurants</option>
+                <option>Cities</option>
+              </select>
+              </span>
+              <span>
+                <form>
+                  <label htmlFor="default-search" className="mb-2 text-sm font-medium text-white sr-only">Search</label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                      <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                      </svg>
+                    </div>
+                    <input id="default-search" onChange={handleSearchBarChange} className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search Cities" required />
+                    <Link to={`/restaurants?query=${searchBarText}&filter=${filter}`}><button type="button" id="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue font-medium rounded-lg text-sm px-4 py-2">Search</button></Link>
+                  </div>
+                </form>
+              </span>
+            </span>
           </div>
         </div>
       </center>
@@ -74,36 +75,6 @@ function Home() {
         </div>
 
       </div>
-
-      <center>
-        <div className='grid-cols-1 place-content-center mt-0 pb-20 bg-blue border-b-[0px] border-orange '>
-          <div>
-            <h1 className='font-jomhuria text-white pt-4 text-6xl sm:text-9xl'>Join our newsletter!</h1>
-          </div>
-
-          <div className="mt-6 flex gap-x-2 px-8 sm:w-2/5">
-            <label htmlFor="email-address" className="sr-only">
-              Email address
-            </label>
-            <input
-              id="email-address"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              className="flex-auto rounded-md border-0 bg-white px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-              placeholder="Enter your email"
-            />
-            <button
-              type="submit"
-              className="flex-none rounded-md bg-orange px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 duration-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-            >
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </center>
-
     </div>
 
   );

@@ -12,7 +12,7 @@ export default function Layout(props: LayoutProps) {
         <Navbar />
         {props.children}
       </div>
-      <div className="bg-blue py-2 text-center">
+      <div className="bg-blue py-4 text-center">
         <p className=' text-white font-semibold'>
           © 2024 TV Eats
         </p>
