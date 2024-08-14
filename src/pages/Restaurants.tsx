@@ -1,21 +1,21 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useState, useEffect } from "react";
 import { Database } from '../types/supabase';
 import { createClient } from '@supabase/supabase-js';
 import TileLayout from "../components/TileLayout";
 import { useSearchParams } from "react-router-dom";
-import Shows from "./Shows";
-import { resourceUsage } from "process";
 import { debounce } from "../utils";
 
 const supabase = createClient<Database>("https://lbcmncanrrxxpnxgqjuy.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxiY21uY2FucnJ4eHBueGdxanV5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUxOTE3MjEsImV4cCI6MjAzMDc2NzcyMX0.ixqd5dq2vKgF_JNWQe-iLbwYoNd9rzvK7C2-fAd_b78");
-
 
 function Restaurants() {
   const [restaurants, setRestaurants] = useState([] as any[]);
   const [searchParams] = useSearchParams();
   const [searchBarText, setSearchBarText] = useState('' as string);
   const [searchBarQuery, setSearchBarQuery] = useState('' as string);
+
+
+
   // let showId = searchParams.get('show_id') as unknown as number;
   let filterOn = searchParams.get("filter") as unknown as string;
   let urlQuery = searchParams.get("query") as unknown as string;
@@ -59,7 +59,6 @@ function Restaurants() {
       setRestaurants(restaurants)
     }
   }
-
 
   const handleSearchBarChange = (e: any) => {
     setSearchBarText(e.target.value);
@@ -121,8 +120,6 @@ function Restaurants() {
         </div>
       </div>
     </div>
-
-
   );
 }
 

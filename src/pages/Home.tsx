@@ -12,11 +12,11 @@ function Home() {
     setSearchBarText(e.target.value);
   }
 
-  const handleSelectChange = (e:any) => {
+  const handleSelectChange = (e: any) => {
     setFilter(e.target.value);
   }
 
-  
+
 
   return (
     <div>
@@ -30,10 +30,10 @@ function Home() {
           <div className='mt-6 sm:-mt-6 relative w-5/6 sm:w-1/3 pb-12'>
             <span className='inline-flex space-x-2'>
               <span>
-              <select id="select" onChange={handleSelectChange} className="select w-full max-w-xs">
-                <option>Restaurants</option>
-                <option>Cities</option>
-              </select>
+                <select id="select" onChange={handleSelectChange} className="select w-full max-w-xs">
+                  <option>Restaurants</option>
+                  <option>Cities</option>
+                </select>
               </span>
               <span>
                 <form>
