@@ -69,19 +69,19 @@ function Restaurants() {
   useEffect(() => {
     console.log('searchBarQuery UseEffect! called with query: ', searchBarQuery)
     console.log('filterOn: ', filterOn)
-    if (!urlQuery && searchBarQuery == '') {
+    if (!urlQuery && searchBarQuery === '') {
       getAllRestaurants();
     } else {
-      if (filterOn && filterOn == "Restaurants") {
+      if (filterOn && filterOn === "Restaurants") {
         searchRestaurantsByName(searchBarQuery)
-      } else if (filterOn && filterOn == "Cities") {
+      } else if (filterOn && filterOn === "Cities") {
         searchRestaurantsByCity(searchBarQuery);
-      } else if (searchBarQuery != '') {
+      } else if (searchBarQuery !== '') {
         searchRestaurantsByName(searchBarQuery)
       }
     }
 
-  }, [searchBarQuery])
+  }, [searchBarQuery, filterOn, urlQuery])
 
   useEffect(() => {
     console.log('URL Query: ', urlQuery)
@@ -91,7 +91,7 @@ function Restaurants() {
       getAllRestaurants();
     }
 
-  }, [])
+  }, [setSearchBarQueryDebounced, urlQuery])
 
   useEffect(() => {
     console.log('Restaurants were set! ', restaurants)

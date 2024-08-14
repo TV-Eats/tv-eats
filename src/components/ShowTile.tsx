@@ -1,6 +1,4 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Database } from "../types/supabase";
+import { Link } from "react-router-dom";
 
 type Params = {
   showName: string;

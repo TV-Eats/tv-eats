@@ -27,6 +27,7 @@ function RestaurantModalContent(props: RestaurantModalContentProps) {
         <p className="pt-2">{props.description}</p>
 
         <iframe
+          title="restaurant-map"
           width="400"
           height="300"
           loading="lazy"
